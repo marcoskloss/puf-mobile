@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 
-import { Field, Box, Button, Link } from '~/components'
+import { Field, Box, Button } from '~/components'
 
 const validationSchema = yup.object().shape({
     username: yup
@@ -58,15 +58,15 @@ export const Form = ({ onSubmit }) => {
                 mb={3}
             />
 
-            <Box center gap={3} mt={6}>
+            <Box center gap={3} mt={6} row>
                 <Button
+                    label="Entrar"
                     disabled={!isValid}
                     onPress={handleSubmit}
-                    loading={isSubmitting}>
-                    Entrar
-                </Button>
+                    loading={isSubmitting}
+                />
 
-                <Box fontSize={1} color="gray">
+                {/* <Box fontSize={1} color="gray">
                     Não possui cadastro?{' '}
                     <Link
                         to="/signup"
@@ -75,7 +75,7 @@ export const Form = ({ onSubmit }) => {
                         color="gray">
                         Cadastre-se!
                     </Link>
-                </Box>
+                </Box> */}
             </Box>
         </>
     )

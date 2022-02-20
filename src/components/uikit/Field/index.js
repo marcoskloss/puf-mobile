@@ -14,21 +14,30 @@ const ErrorMessage = styled(Text)`
 `
 
 export const Field = ({
-    label,
     textContentType,
-    onChangeText,
+    name,
+    label,
+    value,
     error,
+    placeholder,
     placeholderColor,
+    disabled,
+    onChangeText,
+    onBlur,
     ...props
 }) => (
-    <Box>
+    <Box {...props}>
         <Label>{label}</Label>
         <Input
+            value={value}
+            name={name}
             textContentType={textContentType}
             onChangeText={onChangeText}
             hasError={!!error}
             placeholderColor={placeholderColor}
-            {...props}
+            placeholder={placeholder}
+            disabled={disabled}
+            onBlur={onBlur}
         />
         {error && <ErrorMessage>{error}</ErrorMessage>}
     </Box>

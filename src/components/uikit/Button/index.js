@@ -13,7 +13,7 @@ const StyledButton = styled(TouchableOpacity)`
     color: ${th.color('black')};
     padding: ${th.space(2)}px ${th.space(8)}px;
     align-items: center;
-    justify-content: center;
+    align-self: center;
 
     ${margin}
     ${({ disabled }) => disabled && 'opacity: 0.5;'}
