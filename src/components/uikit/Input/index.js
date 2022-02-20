@@ -1,9 +1,10 @@
+import * as React from 'react'
 import { TextInput } from 'react-native'
-import styled, { css } from 'styled-components/native'
+import styled, { css, useTheme } from 'styled-components/native'
 
 import { th } from '~/components/Theme/helpers'
 
-export const Input = styled(TextInput)`
+const StyledInput = styled(TextInput)`
     background: transparent;
     border: 1px solid #fff;
     border-radius: 200px;
@@ -17,3 +18,12 @@ export const Input = styled(TextInput)`
             border-color: ${th.color('red')};
         `}
 `
+
+export const Input = ({ placeholderColor = 'gray', ...props }) => {
+    const theme = useTheme()
+    const placeholderTextColor = th.color(placeholderColor)({ theme })
+
+    return (
+        <StyledInput {...props} placeholderTextColor={placeholderTextColor} />
+    )
+}
