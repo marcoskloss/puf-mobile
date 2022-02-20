@@ -10,7 +10,8 @@ import {
 } from '~/components/Theme/helpers'
 
 export const Text = styled(BaseText)`
-    color: ${th.color('white')} ${padding};
+    color: ${th.color('white')};
+    ${padding};
     ${background};
     ${margin};
     ${font};
