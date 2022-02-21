@@ -23,7 +23,7 @@ const Screen = ({
 export const Login = () => {
     return (
         <Screen p={2}>
-            <Form />
+            <Form onSignupPress={() => console.warn('click!')} />
         </Screen>
     )
 }
