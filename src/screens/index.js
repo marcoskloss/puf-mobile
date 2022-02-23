@@ -2,6 +2,7 @@ import * as React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native'
 
+import { useAuth } from '~/modules'
 import { Login } from './Login'
 import { Dashboard } from './Dashboard'
 
@@ -19,10 +20,10 @@ const LoggedInRoutes = () => (
 )
 
 export const App = () => {
-    const isLoggedIn = false
+    const [auth] = useAuth()
     return (
         <NavigationContainer>
-            {isLoggedIn ? <LoggedInRoutes /> : <PublicRoutes />}
+            {auth.user ? <LoggedInRoutes /> : <PublicRoutes />}
         </NavigationContainer>
     )
 }
