@@ -58,7 +58,7 @@ export const Form = ({ onSubmit, onSignupPress }) => {
                 mb={3}
             />
 
-            <Box center gap={3} mt={3}>
+            <Box center mt={3}>
                 <Button
                     label="Entrar"
                     disabled={!isValid}
@@ -66,7 +66,7 @@ export const Form = ({ onSubmit, onSignupPress }) => {
                     loading={isSubmitting}
                 />
 
-                <Box fontSize={1} color="gray" m={1}>
+                <Box fontSize={1} color="gray" mt={4}>
                     <Text textAlign="center">
                         Não possui cadastro?{' '}
                         <Text

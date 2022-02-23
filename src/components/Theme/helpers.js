@@ -44,10 +44,6 @@ export const flexbox = props => {
                 `justify-content: ${justifyContent};`
             )};
             ${addIfExists(alignItems, `align-items: ${alignItems};`)};
-            ${addIfExists(
-                props.gap,
-                `gap: ${props.theme.spaces[props.gap]}px;`
-            )};
         `
     }
     return css
