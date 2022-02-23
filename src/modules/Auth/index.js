@@ -8,7 +8,7 @@ const AUTH_KEY = '@puf:auth'
 export const useAuth = () => {
     const [state, setState] = useContext(AuthContext)
 
-    const logout = () => setState(false)
+    const logout = () => setState({})
     return [state, { login: setState, logout }]
 }
 

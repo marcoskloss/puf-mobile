@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { StatusBar } from 'react-native'
 
-import { Box, SafeArea, Text } from '~/components'
+import { Box, SafeArea, Text, Button } from '~/components'
+import { useAuth } from '~/modules'
 
 const Screen = ({
     children,
@@ -19,10 +20,15 @@ const Screen = ({
     )
 }
 
-export const Dashboard = () => (
-    <Screen>
-        <Box>
-            <Text>Olá!</Text>
-        </Box>
-    </Screen>
-)
+export const Dashboard = () => {
+    const [, { logout }] = useAuth()
+
+    return (
+        <Screen>
+            <Box>
+                <Text>Olá!</Text>
+                <Button label="Sair" onPress={logout} />
+            </Box>
+        </Screen>
+    )
+}
