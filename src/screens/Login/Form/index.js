@@ -41,8 +41,8 @@ export const Form = ({ onSubmit, onSignupPress }) => {
                 value={values.username}
                 disabled={isSubmitting}
                 error={touched.username && errors.username}
-                onChange={handleChange}
-                onBlur={handleBlur}
+                onChangeText={handleChange('username')}
+                onBlur={handleBlur('username')}
                 mb={3}
             />
             <Field
@@ -53,8 +53,8 @@ export const Form = ({ onSubmit, onSignupPress }) => {
                 value={values.password}
                 disabled={isSubmitting}
                 error={touched.password && errors.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
                 mb={3}
             />
 
