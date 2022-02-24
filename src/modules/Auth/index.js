@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useContext, createContext, useState, useEffect } from 'react'
+import { useContext, createContext, useState, useEffect, useRef } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const AuthContext = createContext([{}, () => {}])
@@ -14,22 +14,29 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
     const [state, setState] = useState({})
+    const isFirstRender = useRef(true)
 
-    const setData = state =>
-        AsyncStorage.setItem(AUTH_KEY, state && JSON.stringify(state))
+    const setData = async value => {
+        await AsyncStorage.setItem(AUTH_KEY, value && JSON.stringify(value))
+    }
 
     const getData = async () => {
         const data = await AsyncStorage.getItem(AUTH_KEY)
+
         if (data !== null) {
-            setState(JSON.stringify(data))
+            setState({ ...JSON.parse(data) })
         }
     }
 
     useEffect(() => {
-        setData(state)
+        !isFirstRender.current && setData(state)
     }, [state])
 
     useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false
+        }
+
         getData()
     }, [])
 
