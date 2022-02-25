@@ -21,12 +21,12 @@ const Screen = ({
 }
 
 export const Dashboard = () => {
-    const [, { logout }] = useAuth()
+    const [user, { logout }] = useAuth()
 
     return (
         <Screen>
             <Box>
-                <Text>Olá!</Text>
+                <Text>Olá! {JSON.stringify(user)}</Text>
                 <Button label="Sair" onPress={logout} />
             </Box>
         </Screen>
