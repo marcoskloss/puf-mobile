@@ -1,20 +1,30 @@
 import * as React from 'react'
-import { render } from '@testing-library/react-native'
+import axios from 'axios'
+import { render, fireEvent, waitFor } from '@testing-library/react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { App } from './'
 import { AuthProvider } from '~/modules'
 import { Theme } from '~/components'
 
-test('should show login form', () => {
-    const screen = render(
+jest.mock('axios')
+
+const renderPage = () => {
+    return render(
         <Theme>
             <AuthProvider>
                 <App />
             </AuthProvider>
         </Theme>
     )
+}
 
-    screen.debug()
+beforeEach(async () => {
+    await AsyncStorage.clear()
+})
+
+test('should show login form', () => {
+    const screen = renderPage()
 
     const emailInput = screen.getByText('E-mail')
     const passwordInput = screen.getByText('Senha')
@@ -25,4 +35,46 @@ test('should show login form', () => {
     expect(passwordInput).toBeTruthy()
     expect(submitBtn).toBeTruthy()
     expect(signupLink).toBeTruthy()
+})
+
+test('should log in when submitting the form with correct credentials', async () => {
+    const credentials = {
+        email: 'user@email.com',
+        password: '123456',
+    }
+
+    const responseData = {
+        user: {
+            id: 1,
+            email: credentials.email,
+            name: 'User',
+        },
+        token: 'somestringasdasdasd',
+    }
+
+    axios.get.mockImplementation(() => {
+        return Promise.resolve({ data: responseData })
+    })
+
+    const screen = renderPage()
+
+    const emailInput = screen.getByText('E-mail')
+    const passwordInput = screen.getByText('Senha')
+    const submitBtn = screen.getByText('Entrar')
+
+    fireEvent.changeText(emailInput, credentials.email)
+    fireEvent.changeText(passwordInput, credentials.password)
+    fireEvent.press(submitBtn)
+
+    await waitFor(() => expect(submitBtn).toBeDisabled())
+
+    expect(axios.get).toHaveBeenCalledWith(expect.stringMatching(/login/g), {
+        auth: {
+            username: credentials.email,
+            password: credentials.password,
+        },
+    })
+
+    const username = screen.getByText(/Olá!/g)
+    expect(username).toBeTruthy()
 })
