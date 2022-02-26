@@ -78,3 +78,31 @@ test('should log in when submitting the form with correct credentials', async ()
     const username = screen.getByText(/Olá!/g)
     expect(username).toBeTruthy()
 })
+
+test('should not log in user when submitting the form with wrong credentials', async () => {
+    const credentials = {
+        email: 'foo@mail.com',
+        password: '123456',
+    }
+
+    axios.get.mockImplementation(() => Promise.reject())
+
+    const screen = renderPage()
+
+    const emailInput = screen.getByText('E-mail')
+    const passwordInput = screen.getByText('Senha')
+    const submitBtn = screen.getByText('Entrar')
+
+    fireEvent.changeText(emailInput, credentials.email)
+    fireEvent.changeText(passwordInput, credentials.password)
+    fireEvent.press(submitBtn)
+
+    await waitFor(() => expect(submitBtn).toBeDisabled())
+
+    expect(axios.get).toHaveBeenCalledWith(expect.stringMatching(/login/g), {
+        auth: { password: credentials.password, username: credentials.email },
+    })
+
+    expect(submitBtn).toBeEnabled()
+    expect(screen.getByText('Entrar'))
+})
