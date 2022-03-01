@@ -21,7 +21,12 @@ const Screen = ({
 }
 
 export const Dashboard = () => {
-    const [user, { logout }] = useAuth()
+    const [
+        {
+            auth: { user },
+        },
+        { logout },
+    ] = useAuth()
 
     return (
         <Screen>

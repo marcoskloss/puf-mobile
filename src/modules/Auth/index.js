@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useContext, createContext, useState, useEffect, useRef } from 'react'
+import { useContext, createContext, useState, useEffect } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const AuthContext = createContext([{}, () => {}])
@@ -8,13 +8,24 @@ const AUTH_KEY = '@puf:auth'
 export const useAuth = () => {
     const [state, setState] = useContext(AuthContext)
 
-    const logout = () => setState({})
-    return [state, { login: setState, logout }]
+    const logout = () =>
+        setState(prevState => ({
+            ...prevState,
+            auth: {},
+        }))
+
+    const login = auth =>
+        setState(prevState => ({
+            ...prevState,
+            rehydrated: true,
+            auth,
+        }))
+
+    return [state, { login, logout }]
 }
 
 export const AuthProvider = ({ children }) => {
-    const [state, setState] = useState({})
-    const isFirstRender = useRef(true)
+    const [state, setState] = useState({ auth: {}, rehydrated: false })
 
     const setData = async value => {
         await AsyncStorage.setItem(AUTH_KEY, value && JSON.stringify(value))
@@ -29,14 +40,10 @@ export const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        !isFirstRender.current && setData(state)
+        state?.rehydrated && setData(state)
     }, [state])
 
     useEffect(() => {
-        if (isFirstRender.current) {
-            isFirstRender.current = false
-        }
-
         getData()
     }, [])
 
