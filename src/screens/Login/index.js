@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { StatusBar } from 'react-native'
-import axios from 'axios'
+
+import { login } from '~/services/sdk'
+import { useAuth } from '~/modules'
 
 import { Box, SafeArea, Logo, Text } from '~/components'
-import { useAuth } from '~/modules'
 import { Form } from './Form'
 
 const Screen = ({
@@ -27,11 +28,8 @@ export const Login = () => {
 
     const onSubmit = async values => {
         try {
-            const res = await axios.get('http://localhost:9901/login', {
-                auth: values,
-            })
-
-            setAuth(res.data)
+            const { user, token } = await login(values)
+            setAuth({ user, token })
         } catch (error) {
             console.log({ error })
         }
