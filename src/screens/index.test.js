@@ -104,5 +104,5 @@ test('should not log in user when submitting the form with wrong credentials', a
     })
 
     expect(submitBtn).toBeEnabled()
-    expect(screen.getByText('Entrar'))
+    expect(screen.getByText('Entrar')).toBeTruthy()
 })
