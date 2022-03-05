@@ -4,7 +4,7 @@ import { StatusBar } from 'react-native'
 import { login } from '~/services/sdk'
 import { useAuth } from '~/modules'
 
-import { Box, SafeArea, Logo, Text, Button } from '~/components'
+import { Box, SafeArea, Logo, Text } from '~/components'
 import { Form } from './Form'
 
 const Screen = ({
