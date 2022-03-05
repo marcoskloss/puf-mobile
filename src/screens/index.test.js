@@ -1,5 +1,5 @@
 import * as React from 'react'
-import axios from 'axios'
+import { login } from '~/services/sdk'
 import { render, fireEvent, waitFor } from '@testing-library/react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
@@ -8,6 +8,7 @@ import { AuthProvider } from '~/modules'
 import { Theme } from '~/components'
 
 jest.mock('axios')
+jest.mock('~/services/sdk')
 
 const renderPage = () => {
     return render(
@@ -52,8 +53,8 @@ test('should log in when submitting the form with correct credentials', async ()
         token: 'somestringasdasdasd',
     }
 
-    axios.get.mockImplementation(() => {
-        return Promise.resolve({ data: responseData })
+    login.mockImplementation(() => {
+        return Promise.resolve(responseData)
     })
 
     const screen = renderPage()
@@ -68,11 +69,9 @@ test('should log in when submitting the form with correct credentials', async ()
 
     await waitFor(() => expect(submitBtn).toBeDisabled())
 
-    expect(axios.get).toHaveBeenCalledWith(expect.stringMatching(/login/g), {
-        auth: {
-            username: credentials.email,
-            password: credentials.password,
-        },
+    expect(login).toHaveBeenCalledWith({
+        username: credentials.email,
+        password: credentials.password,
     })
 
     const username = screen.getByText(/Olá!/g)
@@ -85,7 +84,7 @@ test('should not log in user when submitting the form with wrong credentials', a
         password: '123456',
     }
 
-    axios.get.mockImplementation(() => Promise.reject())
+    login.mockImplementation(() => Promise.reject())
 
     const screen = renderPage()
 
@@ -99,8 +98,9 @@ test('should not log in user when submitting the form with wrong credentials', a
 
     await waitFor(() => expect(submitBtn).toBeDisabled())
 
-    expect(axios.get).toHaveBeenCalledWith(expect.stringMatching(/login/g), {
-        auth: { password: credentials.password, username: credentials.email },
+    expect(login).toHaveBeenCalledWith({
+        password: credentials.password,
+        username: credentials.email,
     })
 
     expect(submitBtn).toBeEnabled()
