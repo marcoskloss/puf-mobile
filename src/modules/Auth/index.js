@@ -1,12 +1,7 @@
-import * as React from 'react'
-import { useContext, createContext, useState, useEffect } from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-
-const AuthContext = createContext([{}, () => {}])
-const AUTH_KEY = '@puf:auth'
+import { useStorage } from '~/modules/Storage'
 
 export const useAuth = () => {
-    const [state, setState] = useContext(AuthContext)
+    const [state, setState] = useStorage()
 
     const logout = () =>
         setState(prevState => ({
@@ -22,34 +17,4 @@ export const useAuth = () => {
         }))
 
     return [state, { login, logout }]
-}
-
-export const AuthProvider = ({ children }) => {
-    const [state, setState] = useState({ auth: {}, rehydrated: false })
-
-    const setData = async value => {
-        await AsyncStorage.setItem(AUTH_KEY, value && JSON.stringify(value))
-    }
-
-    const getData = async () => {
-        const data = await AsyncStorage.getItem(AUTH_KEY)
-
-        if (data !== null) {
-            setState({ ...JSON.parse(data) })
-        }
-    }
-
-    useEffect(() => {
-        state?.rehydrated && setData(state)
-    }, [state])
-
-    useEffect(() => {
-        getData()
-    }, [])
-
-    return (
-        <AuthContext.Provider value={[state, setState]}>
-            {children}
-        </AuthContext.Provider>
-    )
 }
