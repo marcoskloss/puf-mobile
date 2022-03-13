@@ -1,15 +1,16 @@
 import * as React from 'react'
 
 import { Theme } from './components/Theme'
-import { AuthProvider } from '~/modules'
+import { StorageProvider } from '~/modules'
+import { asyncAdapter } from '~/modules/Storage/persistence-adapters/async-adapter'
 import { App } from './screens'
 
 export const Main = () => {
     return (
         <Theme>
-            <AuthProvider>
+            <StorageProvider persistenceAdapter={asyncAdapter}>
                 <App />
-            </AuthProvider>
+            </StorageProvider>
         </Theme>
     )
 }

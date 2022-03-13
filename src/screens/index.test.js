@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { login } from '~/services/sdk'
 import { render, fireEvent, waitFor } from '@testing-library/react-native'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { App } from './'
-import { AuthProvider } from '~/modules'
+import { StorageProvider } from '~/modules'
+import { asyncAdapter } from '~/modules/Storage/persistence-adapters/async-adapter'
 import { Theme } from '~/components'
 
 jest.mock('axios')
@@ -13,15 +13,15 @@ jest.mock('~/services/sdk')
 const renderPage = () => {
     return render(
         <Theme>
-            <AuthProvider>
+            <StorageProvider persistenceAdapter={asyncAdapter}>
                 <App />
-            </AuthProvider>
+            </StorageProvider>
         </Theme>
     )
 }
 
 beforeEach(async () => {
-    await AsyncStorage.clear()
+    await asyncAdapter.clear()
 })
 
 test('should show login form', () => {
