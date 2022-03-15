@@ -20,7 +20,7 @@ const LoggedInRoutes = () => (
 )
 
 export const App = () => {
-    const [{ auth }] = useAuth()
+    const [auth] = useAuth()
     return (
         <NavigationContainer>
             {auth?.user ? <LoggedInRoutes /> : <PublicRoutes />}
