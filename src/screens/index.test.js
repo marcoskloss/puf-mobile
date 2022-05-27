@@ -1,14 +1,14 @@
 import * as React from 'react'
-import { login } from '~/services/sdk'
+import { login } from '../services/sdk'
 import { render, fireEvent, waitFor } from '@testing-library/react-native'
 
 import { App } from './'
-import { StorageProvider } from '~/modules'
-import { asyncAdapter } from '~/modules/Storage/persistence-adapters/async-adapter'
-import { Theme } from '~/components'
+import { StorageProvider } from '../modules'
+import { asyncAdapter } from '../modules/Storage/persistence-adapters/async-adapter'
+import { Theme } from '../components'
 
 jest.mock('axios')
-jest.mock('~/services/sdk')
+jest.mock('../services/sdk')
 
 const renderPage = () => {
     return render(

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { render, fireEvent, waitFor } from '@testing-library/react-native'
 
-import { Theme } from '~/components'
+import { Theme } from '../../components'
 import { Login } from './'
 
 const renderPage = () => {

@@ -1,11 +1,12 @@
 import * as React from 'react'
 import { StatusBar } from 'react-native'
 
-import { login } from '~/services/sdk'
-import { useAuth } from '~/modules'
+import { login } from '../../services/sdk'
+import { useAuth } from '../../modules'
 
-import { Box, SafeArea, Logo, Text } from '~/components'
+import { Box, SafeArea, Logo, Text } from '../../components'
 import { Form } from './Form'
+import { useNavigation } from '@react-navigation/native'
 
 const Screen = ({
     children,
@@ -25,6 +26,7 @@ const Screen = ({
 
 export const Login = () => {
     const [, { login: setAuth }] = useAuth()
+    const { navigate } = useNavigation()
 
     const onSubmit = async values => {
         try {
@@ -44,7 +46,7 @@ export const Login = () => {
                 </Text>
                 <Form
                     onSubmit={onSubmit}
-                    onSignupPress={() => console.warn('click!')}
+                    onGoToSignup={() => navigate('/signup')}
                 />
             </Box>
         </Screen>

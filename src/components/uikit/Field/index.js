@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
 
-import { th } from '~/components/Theme'
+import { th } from '../../Theme'
 import { Box } from '../Box'
 import { Input } from '../Input'
 import { Label } from '../Label'

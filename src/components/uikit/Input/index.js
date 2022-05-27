@@ -2,7 +2,7 @@ import * as React from 'react'
 import { TextInput } from 'react-native'
 import styled, { css, useTheme } from 'styled-components/native'
 
-import { th } from '~/components/Theme/helpers'
+import { th } from '../../Theme/helpers'
 
 const StyledInput = styled(TextInput)`
     background: transparent;

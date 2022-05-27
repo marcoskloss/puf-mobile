@@ -2,17 +2,17 @@ import * as React from 'react'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 
-import { Field, Box, Button, Text } from '~/components'
+import { Field, Box, Button, Text } from '../../../components'
 
 const validationSchema = yup.object().shape({
-    username: yup
+    email: yup
         .string()
         .email('E-mail inválido')
         .required('Informe o seu e-mail'),
     password: yup.string().required('Digite uma senha'),
 })
 
-export const Form = ({ onSubmit, onSignupPress }) => {
+export const Form = ({ onSubmit, onGoToSignup }) => {
     const {
         values,
         handleChange,
@@ -26,7 +26,7 @@ export const Form = ({ onSubmit, onSignupPress }) => {
         onSubmit,
         validationSchema,
         initialValues: {
-            username: '',
+            email: '',
             password: '',
         },
     })
@@ -35,14 +35,14 @@ export const Form = ({ onSubmit, onSignupPress }) => {
         <>
             <Field
                 type="text"
-                name="username"
+                name="email"
                 label="E-mail"
                 placeholder="Digite o seu e-mail"
-                value={values.username}
+                value={values.email}
                 disabled={isSubmitting}
-                error={touched.username && errors.username}
-                onChangeText={handleChange('username')}
-                onBlur={handleBlur('username')}
+                error={touched.email && errors.email}
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
                 mb={3}
             />
             <Field
@@ -72,7 +72,8 @@ export const Form = ({ onSubmit, onSignupPress }) => {
                         <Text
                             fontWeight="bold"
                             color="gray"
-                            onPress={onSignupPress}>
+                            onPress={onGoToSignup}
+                        >
                             Cadastre-se!
                         </Text>
                     </Text>

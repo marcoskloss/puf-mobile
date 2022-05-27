@@ -1,4 +1,4 @@
-import { useStorage } from '~/modules/Storage'
+import { useStorage } from '../Storage'
 
 export const useAuth = () => {
     const [state, setState] = useStorage()
