@@ -49,8 +49,7 @@ export const StorageProvider = ({
         <MemoryStorageProvider initialState={initialState}>
             <PersistenceProvider
                 persistenceAdapter={persistenceAdapter}
-                onRehydrate={onRehydrate}
-            >
+                onRehydrate={onRehydrate}>
                 {children}
             </PersistenceProvider>
         </MemoryStorageProvider>

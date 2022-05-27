@@ -10,7 +10,6 @@
         "prepare": "husky install",
         "fix": "run-s \"fix:* {@}\" --",
         "fix:lint": "eslint --fix --no-error-on-unmatched-pattern",
-        "fix:format": "prettier --write",
         "format": "yarn fix:format 'src/**/*.(js|ts|json|md)'",
         "lint": "yarn fix:lint src/**/*.{js,ts,md,json}"
     },
