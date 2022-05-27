@@ -9,6 +9,8 @@ const baseURL =
     process.env.CUSTOM_URL ||
     endpoints.production
 
-console.log(process.env)
+export const setToken = token => {
+    fetch.defaults.headers.Authorization = token ? `Bearer ${token}` : token
+}
 
 export const fetch = axios.create({ baseURL })
