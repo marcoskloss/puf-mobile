@@ -50,6 +50,7 @@ export const Form = ({ onSubmit, onGoToSignup }) => {
                 name="password"
                 label="Senha"
                 placeholder="Digite a sua senha"
+                secureTextEntry
                 value={values.password}
                 disabled={isSubmitting}
                 error={touched.password && errors.password}
@@ -72,8 +73,7 @@ export const Form = ({ onSubmit, onGoToSignup }) => {
                         <Text
                             fontWeight="bold"
                             color="gray"
-                            onPress={onGoToSignup}
-                        >
+                            onPress={onGoToSignup}>
                             Cadastre-se!
                         </Text>
                     </Text>
