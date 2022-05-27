@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createDrawerNavigator } from '@react-navigation/drawer'
 import { NavigationContainer } from '@react-navigation/native'
 
 import { useAuth } from '../modules'
@@ -8,17 +9,18 @@ import { Signup } from './Signup'
 import { Login } from './Login'
 
 const Stack = createNativeStackNavigator()
+const Drawer = createDrawerNavigator()
 
 const PublicRoutes = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="/signup" component={Signup} />
         <Stack.Screen name="/login" component={Login} />
+        <Stack.Screen name="/signup" component={Signup} />
     </Stack.Navigator>
 )
 const LoggedInRoutes = () => (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="/dash" component={Dashboard} />
-    </Stack.Navigator>
+    <Drawer.Navigator screenOptions={{ headerShown: false }}>
+        <Drawer.Screen name="/dash" component={Dashboard} />
+    </Drawer.Navigator>
 )
 
 export const App = () => {
