@@ -7,6 +7,7 @@ import { useAuth } from '../modules'
 import { Dashboard } from './Dashboard'
 import { Signup } from './Signup'
 import { Login } from './Login'
+import { Icon } from '../components'
 
 const Stack = createNativeStackNavigator()
 const Drawer = createDrawerNavigator()
@@ -28,6 +29,7 @@ const LoggedInRoutes = () => (
             component={Dashboard}
             options={{
                 drawerLabel: () => null,
+                drawerIcon: () => <Icon name="dashboard" />,
             }}
         />
     </Drawer.Navigator>
