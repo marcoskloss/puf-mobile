@@ -7,7 +7,7 @@ import { useAuth } from '../modules'
 import { Dashboard } from './Dashboard'
 import { Signup } from './Signup'
 import { Login } from './Login'
-import { Icon } from '../components'
+import { Icon, Menu } from '../components'
 
 const Stack = createNativeStackNavigator()
 const Drawer = createDrawerNavigator()
@@ -20,15 +20,19 @@ const PublicRoutes = () => (
 )
 const LoggedInRoutes = () => (
     <Drawer.Navigator
+        drawerContent={props => <Menu {...props} />}
         screenOptions={{
             headerShown: false,
-            drawerStyle: { backgroundColor: '#000' },
+            drawerStyle: {
+                backgroundColor: '#000',
+                maxWidth: 80,
+                alignItems: 'center',
+            },
         }}>
         <Drawer.Screen
             name="/dash"
             component={Dashboard}
             options={{
-                drawerLabel: () => null,
                 drawerIcon: () => <Icon name="dashboard" />,
             }}
         />
