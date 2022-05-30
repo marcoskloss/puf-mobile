@@ -23,7 +23,7 @@ export const PersistenceProvider = ({
 
     const rehydrate = useCallback(async () => {
         const result = await persistenceAdapter.getItem()
-        const data = onRehydrate(result)
+        const data = await onRehydrate(result)
         setState({ ...data, rehydrated: true })
     }, [persistenceAdapter, setState, onRehydrate])
 

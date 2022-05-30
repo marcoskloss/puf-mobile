@@ -5,7 +5,7 @@ const AUTH_KEY = '@puf:auth'
 export const asyncAdapter = {
     getItem: async () => {
         try {
-            const data = AsyncStorage.getItem(AUTH_KEY)
+            const data = await AsyncStorage.getItem(AUTH_KEY)
             return data && JSON.parse(data)
         } catch (err) {
             return Promise.reject(err)
