@@ -15,6 +15,7 @@ const ErrorMessage = styled(Text)`
 
 export const Field = ({
     textContentType,
+    secureTextEntry,
     name,
     label,
     value,
@@ -37,6 +38,7 @@ export const Field = ({
             placeholderColor={placeholderColor}
             placeholder={placeholder}
             disabled={disabled}
+            secureTextEntry={secureTextEntry}
             onBlur={onBlur}
         />
         {error && <ErrorMessage>{error}</ErrorMessage>}
