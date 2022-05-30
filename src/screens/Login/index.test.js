@@ -3,11 +3,14 @@ import { render, fireEvent, waitFor } from '@testing-library/react-native'
 
 import { Theme } from '../../components'
 import { Login } from './'
+import { NavigationContainer } from '@react-navigation/native'
 
 const renderPage = () => {
     return render(
         <Theme>
-            <Login />
+            <NavigationContainer>
+                <Login />
+            </NavigationContainer>
         </Theme>
     )
 }
