@@ -18,8 +18,18 @@ const PublicRoutes = () => (
     </Stack.Navigator>
 )
 const LoggedInRoutes = () => (
-    <Drawer.Navigator screenOptions={{ headerShown: false }}>
-        <Drawer.Screen name="/dash" component={Dashboard} />
+    <Drawer.Navigator
+        screenOptions={{
+            headerShown: false,
+            drawerStyle: { backgroundColor: '#000' },
+        }}>
+        <Drawer.Screen
+            name="/dash"
+            component={Dashboard}
+            options={{
+                drawerLabel: () => null,
+            }}
+        />
     </Drawer.Navigator>
 )
 

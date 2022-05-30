@@ -10,8 +10,7 @@ export const Main = () => {
         <Theme>
             <StorageProvider
                 persistenceAdapter={asyncAdapter}
-                onRehydrate={onRehydrateAuthMiddleware}
-            >
+                onRehydrate={onRehydrateAuthMiddleware}>
                 <App />
             </StorageProvider>
         </Theme>
