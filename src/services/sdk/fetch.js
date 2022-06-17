@@ -9,6 +9,4 @@ const baseURL =
     process.env.CUSTOM_URL ||
     endpoints.production
 
-console.log(process.env)
-
 export const fetch = axios.create({ baseURL })
