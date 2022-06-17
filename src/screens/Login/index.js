@@ -2,6 +2,7 @@ import * as React from 'react'
 import { StatusBar, Alert } from 'react-native'
 
 import { login } from '~/services/sdk'
+import { handleApiError } from '../../services/sdk/fetch'
 import { useAuth } from '~/modules'
 
 import { Box, SafeArea, Logo, Text } from '~/components'
@@ -31,7 +32,8 @@ export const Login = () => {
             const { user, token } = await login(values)
             setAuth({ user, token })
         } catch (error) {
-            Alert.alert('Erro ao fazer login', error.response.data.error)
+            const msg = handleApiError(error)
+            Alert.alert('Erro ao fazer login', msg)
         }
     }
 
