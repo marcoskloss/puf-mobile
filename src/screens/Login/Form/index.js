@@ -53,6 +53,7 @@ export const Form = ({ onSubmit, onSignupPress }) => {
                 value={values.password}
                 disabled={isSubmitting}
                 error={touched.password && errors.password}
+                secureTextEntry
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
                 mb={3}
@@ -72,7 +73,8 @@ export const Form = ({ onSubmit, onSignupPress }) => {
                         <Text
                             fontWeight="bold"
                             color="gray"
-                            onPress={onSignupPress}>
+                            onPress={onSignupPress}
+                        >
                             Cadastre-se!
                         </Text>
                     </Text>

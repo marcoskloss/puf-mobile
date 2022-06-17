@@ -24,6 +24,7 @@ export const Field = ({
     disabled,
     onChangeText,
     onBlur,
+    secureTextEntry,
     ...props
 }) => (
     <Box {...props}>
@@ -38,6 +39,7 @@ export const Field = ({
             placeholder={placeholder}
             disabled={disabled}
             onBlur={onBlur}
+            secureTextEntry={secureTextEntry}
         />
         {error && <ErrorMessage>{error}</ErrorMessage>}
     </Box>
