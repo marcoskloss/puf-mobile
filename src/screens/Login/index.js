@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { StatusBar } from 'react-native'
+import { StatusBar, Alert } from 'react-native'
 
 import { login } from '~/services/sdk'
 import { useAuth } from '~/modules'
@@ -31,7 +31,7 @@ export const Login = () => {
             const { user, token } = await login(values)
             setAuth({ user, token })
         } catch (error) {
-            console.log({ error })
+            Alert.alert('Erro ao fazer login', error.response.data.error)
         }
     }
 
