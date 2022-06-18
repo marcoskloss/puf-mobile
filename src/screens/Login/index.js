@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { StatusBar, Alert } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import { login } from '~/services/sdk'
 import { handleApiError } from '../../services/sdk/fetch'
@@ -26,6 +27,7 @@ const Screen = ({
 
 export const Login = () => {
     const [, { login: setAuth }] = useAuth()
+    const { navigate } = useNavigation()
 
     const onSubmit = async values => {
         try {
@@ -46,7 +48,7 @@ export const Login = () => {
                 </Text>
                 <Form
                     onSubmit={onSubmit}
-                    onSignupPress={() => console.warn('click!')}
+                    onSignupPress={() => navigate('/signup')}
                 />
             </Box>
         </Screen>
