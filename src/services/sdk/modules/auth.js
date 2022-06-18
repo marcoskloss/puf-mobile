@@ -11,3 +11,13 @@ export const login = async ({ password, username }) => {
         throw err
     }
 }
+
+export const signup = async ({ password, name, email }) => {
+    try {
+        const res = await fetch.post('/signup', { name, email, password })
+        return res.data
+    } catch (err) {
+        console.log('signup error', err)
+        throw err
+    }
+}

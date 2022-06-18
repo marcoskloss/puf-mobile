@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import { useAuth } from '~/modules'
 import { Login } from './Login'
+import { Signup } from './Signup'
 import { Dashboard } from './Dashboard'
 
 const Stack = createNativeStackNavigator()
@@ -11,6 +12,7 @@ const Stack = createNativeStackNavigator()
 const PublicRoutes = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="/login" component={Login} />
+        <Stack.Screen name="/signup" component={Signup} />
     </Stack.Navigator>
 )
 const LoggedInRoutes = () => (
