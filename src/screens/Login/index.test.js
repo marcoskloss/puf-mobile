@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { render, fireEvent, waitFor } from '@testing-library/react-native'
+import { NavigationContainer } from '@react-navigation/native'
 
 import { Theme } from '~/components'
 import { Login } from './'
@@ -7,7 +8,9 @@ import { Login } from './'
 const renderPage = () => {
     return render(
         <Theme>
-            <Login />
+            <NavigationContainer>
+                <Login />
+            </NavigationContainer>
         </Theme>
     )
 }
