@@ -1,9 +1,9 @@
 import { fetch } from '../fetch'
 
-export const login = async ({ password, username }) => {
+export const login = async ({ password, email }) => {
     try {
         const res = await fetch.get('/login', {
-            auth: { password, username },
+            auth: { password, username: email },
         })
         return res.data
     } catch (err) {

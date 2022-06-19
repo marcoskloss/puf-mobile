@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 
-import { Field, Box, Button, Text } from '~/components'
+import { Field, Box, Button, Text } from '../../../components'
 
 const validationSchema = yup.object().shape({
     email: yup
@@ -13,7 +13,7 @@ const validationSchema = yup.object().shape({
     password: yup.string().required('Digite uma senha'),
 })
 
-export const Form = ({ onSubmit, onSigninPress }) => {
+export const Form = ({ onSubmit, onGoToLogin }) => {
     const {
         values,
         handleChange,
@@ -82,15 +82,12 @@ export const Form = ({ onSubmit, onSigninPress }) => {
                 />
 
                 <Box fontSize={1} color="gray" mt={4}>
-                    <Text textAlign="center">
-                        Já é cadastrado?{' '}
-                        <Text
-                            fontWeight="bold"
-                            color="gray"
-                            onPress={onSigninPress}
-                        >
-                            Entre!
-                        </Text>
+                    <Text
+                        textAlign="center"
+                        fontWeight="bold"
+                        color="gray"
+                        onPress={onGoToLogin}>
+                        Ja é cadastrado?
                     </Text>
                 </Box>
             </Box>

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Svg, { Path } from 'react-native-svg'
 
-import { Box } from '~/components/uikit/Box'
+import { Box } from '../Box'
 
 export const Logo = ({ height, ...props }) => (
     <Box {...props}>

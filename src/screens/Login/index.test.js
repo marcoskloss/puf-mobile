@@ -2,7 +2,7 @@ import * as React from 'react'
 import { render, fireEvent, waitFor } from '@testing-library/react-native'
 import { NavigationContainer } from '@react-navigation/native'
 
-import { Theme } from '~/components'
+import { Theme } from '../../components'
 import { Login } from './'
 
 const renderPage = () => {

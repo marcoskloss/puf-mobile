@@ -2,9 +2,8 @@ import * as React from 'react'
 import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 
-import { th, margin } from '~/components/Theme'
-import { Text } from '~/components/uikit/Text'
-// import { Spinner } from '~/components/Spinner'
+import { th, margin } from '../../Theme'
+import { Text } from '../../uikit/Text'
 
 const StyledButton = styled(TouchableOpacity)`
     background: ${th.color('white')};

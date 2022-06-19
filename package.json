@@ -3,6 +3,7 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
+        "build-icons": "yarn rn-prepare-svg --input ./src/components/uikit/Icon/svgs --output ./src/components/uikit/Icon/map.json",
         "android": "react-native run-android",
         "ios": "react-native run-ios",
         "start": "react-native start",
@@ -10,12 +11,12 @@
         "prepare": "husky install",
         "fix": "run-s \"fix:* {@}\" --",
         "fix:lint": "eslint --fix --no-error-on-unmatched-pattern",
-        "fix:format": "prettier --write",
         "format": "yarn fix:format 'src/**/*.(js|ts|json|md)'",
         "lint": "yarn fix:lint src/**/*.{js,ts,md,json}"
     },
     "dependencies": {
         "@react-native-async-storage/async-storage": "^1.16.1",
+        "@react-navigation/drawer": "^6.4.1",
         "@react-navigation/native": "^6.0.8",
         "@react-navigation/native-stack": "^6.5.0",
         "axios": "^0.25.0",
@@ -23,6 +24,8 @@
         "formik": "^2.2.9",
         "react": "17.0.2",
         "react-native": "0.67.1",
+        "react-native-gesture-handler": "^2.4.2",
+        "react-native-reanimated": "^2.8.0",
         "react-native-safe-area-context": "^3.4.1",
         "react-native-screens": "^3.12.0",
         "react-native-svg": "^12.1.1",
@@ -49,6 +52,7 @@
         "metro-react-native-babel-preset": "^0.66.2",
         "npm-run-all": "^4.1.5",
         "prettier": "^2.5.1",
+        "react-native-prepare-svg": "^0.1.7",
         "react-test-renderer": "17.0.2"
     }
 }

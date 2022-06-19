@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler'
 import { AppRegistry } from 'react-native'
 import { decode, encode } from 'base-64'
 import { name as appName } from './app.json'

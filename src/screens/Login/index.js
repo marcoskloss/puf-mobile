@@ -1,12 +1,12 @@
 import * as React from 'react'
-import { StatusBar, Alert } from 'react-native'
+import { StatusBar, Alert, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-import { login } from '~/services/sdk'
 import { handleApiError } from '../../services/sdk/fetch'
-import { useAuth } from '~/modules'
+import { login } from '../../services/sdk'
+import { useAuth } from '../../modules'
 
-import { Box, SafeArea, Logo, Text } from '~/components'
+import { Box, SafeArea, Logo, Text } from '../../components'
 import { Form } from './Form'
 
 const Screen = ({
@@ -42,15 +42,17 @@ export const Login = () => {
     return (
         <Screen p={2} justifyContent="center">
             <Logo flex={1} justifyContent="center" />
-            <Box flex={2}>
-                <Text textAlign="center" fontSize={6}>
-                    Login
-                </Text>
-                <Form
-                    onSubmit={onSubmit}
-                    onSignupPress={() => navigate('/signup')}
-                />
-            </Box>
+            <View>
+                <Box flex={2}>
+                    <Text textAlign="center" fontSize={6}>
+                        Login
+                    </Text>
+                    <Form
+                        onSubmit={onSubmit}
+                        onGoToSignup={() => navigate('/signup')}
+                    />
+                </Box>
+            </View>
         </Screen>
     )
 }

@@ -2,12 +2,12 @@ import * as React from 'react'
 import { StatusBar, Alert, KeyboardAvoidingView, Platform } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-import { signup } from '~/services/sdk'
 import { handleApiError } from '../../services/sdk/fetch'
-import { useAuth } from '~/modules'
-
-import { Box, SafeArea, Logo, Text } from '~/components'
 import { Form } from './Form'
+import { signup } from '../../services/sdk'
+import { useAuth } from '../../modules'
+
+import { Box, SafeArea, Logo, Text } from '../../components'
 
 const Screen = ({
     children,
@@ -44,8 +44,7 @@ export const Signup = () => {
         <Screen p={2} justifyContent="center">
             <KeyboardAvoidingView
                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                style={{ flex: 1, paddingBottom: 50 }}
-            >
+                style={{ flex: 1, paddingBottom: 50 }}>
                 <Logo flex={1} justifyContent="center" />
                 <Box flex={2}>
                     <Text textAlign="center" fontSize={6}>
@@ -53,7 +52,7 @@ export const Signup = () => {
                     </Text>
                     <Form
                         onSubmit={onSubmit}
-                        onSigninPress={() => navigate('/login')}
+                        onGoToLogin={() => navigate('/login')}
                     />
                 </Box>
             </KeyboardAvoidingView>

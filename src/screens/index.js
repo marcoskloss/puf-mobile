@@ -1,13 +1,16 @@
 import * as React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createDrawerNavigator } from '@react-navigation/drawer'
 import { NavigationContainer } from '@react-navigation/native'
 
-import { useAuth } from '~/modules'
 import { Login } from './Login'
 import { Signup } from './Signup'
+import { useAuth } from '../modules'
 import { Dashboard } from './Dashboard'
+import { Icon, Menu } from '../components'
 
 const Stack = createNativeStackNavigator()
+const Drawer = createDrawerNavigator()
 
 const PublicRoutes = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -16,9 +19,24 @@ const PublicRoutes = () => (
     </Stack.Navigator>
 )
 const LoggedInRoutes = () => (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="/dash" component={Dashboard} />
-    </Stack.Navigator>
+    <Drawer.Navigator
+        drawerContent={props => <Menu {...props} />}
+        screenOptions={{
+            headerShown: false,
+            drawerStyle: {
+                backgroundColor: '#000',
+                maxWidth: 80,
+                alignItems: 'center',
+            },
+        }}>
+        <Drawer.Screen
+            name="/dash"
+            component={Dashboard}
+            options={{
+                drawerIcon: () => <Icon name="dashboard" />,
+            }}
+        />
+    </Drawer.Navigator>
 )
 
 export const App = () => {

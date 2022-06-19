@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { StatusBar } from 'react-native'
 
-import { Box, SafeArea, Text, Button } from '~/components'
-import { useAuth } from '~/modules'
+import { Box, SafeArea, Text, Button } from '../../components'
+import { useAuth } from '../../modules'
 
 const Screen = ({
     children,
